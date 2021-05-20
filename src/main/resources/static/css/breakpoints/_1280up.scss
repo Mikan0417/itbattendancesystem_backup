@@ -1,0 +1,65 @@
+.header-container-user {
+    & .header-logout {
+        & .header-logout-form {
+            & .header-logout-form-input {
+                margin-left: 80%;
+            }
+        }
+    }
+}
+
+.employee-list-container {
+    & .list-container-header {
+        & .list-container-header__sort {
+
+            margin-left: 60px;
+            font-size: 26px;
+
+            & .sort-employment {
+                & .form-text-input {
+                    height: 34px;
+                    width: 220px;
+                    margin-left: 40px;
+                }
+            }
+        }
+
+        & .list-container-header__button {
+            & .list {
+                margin-right: 50px;
+                width: 300px;
+            }
+        }
+    }
+
+    & .list-container-footer {
+        & .sort-form {
+            & .text-form-group { 
+                height: 192px;
+                flex-wrap: wrap;
+                & .form-text {
+                    & .form-text-input {
+                        margin-right: 35%;
+                    }
+
+                    @for $i from 1 through 4 {
+                        &:nth-child(#{$i}) {
+                            & .form-text-input {
+                                // margin-right: 10%;
+                                margin-right: 25%;
+                            }
+                        }
+                    }
+
+                    @for $i from 5 through 8 {
+                        &:nth-child(#{$i}) {
+                            & .form-text-input {
+                                margin-right: 45%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

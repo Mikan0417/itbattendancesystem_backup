@@ -1,0 +1,51 @@
+.main-chg-container{
+    width: 100%;
+
+    & .chg-form{
+        margin-top: 30px;
+        
+        & .chg-form1{
+            & .text-form-group1 , .text-form-group2{
+                width: 400px;
+                margin: 0 auto;
+                
+                & .form-text{
+                    text-align: right;
+                    margin-right: 23px;
+                    margin-bottom: 10px;
+                    height: 30px;
+
+                    & .form-text-label{
+                        &::after {
+                            content: ":";
+                            margin-left: 5px;
+                            margin-right: 10px;
+
+                        }
+                    }
+                }
+            }
+        }
+
+        & .chg-form2{
+            & .form-btn {
+                & .form-btn-submit {
+                    display: block;
+                    margin: 0 auto;
+                    padding: 2px 36px;
+                    background-color: $cBtn;
+                    border: solid 1px $cBaseFont;
+                    color: $cBaseFont;
+                    font-size: 20px;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        border: solid 1px $cBtnBorder;
+                        background-color: #b9c2fd;
+                    }
+                }
+            }
+        }
+    }
+}
+

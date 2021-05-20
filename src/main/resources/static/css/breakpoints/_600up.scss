@@ -1,0 +1,44 @@
+.employee-list-container {
+    & .list-container-header {
+        & .list-container-header__sort {
+            margin-top: 10px;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    }
+
+    & .list-container-footer {
+        & .sort-form {
+            & .text-form-group {
+                & .form-text {
+                    & .form-text-input {
+                        margin-right: 30%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header-container-admin {
+    &__menu {
+        & .header-logout {
+            display: block;
+
+            & .header-logout-form {
+                & .header-logout-form-input {
+                    border: 1px solid black;
+                    border-radius: 0.2rem;
+                }
+            }
+        }
+
+        & .header-menu-admin {
+            & .header-menu-admin-list {
+                & .mobile-logout-btn {
+                    display: none;
+                }
+            }
+        }
+    }
+}

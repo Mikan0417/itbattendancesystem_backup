@@ -1,0 +1,173 @@
+.header-container-user {
+    & .header-logout {
+        & .header-logout-form {
+            & .header-logout-form-input {
+                margin-left: 70%;
+            }
+        }
+    }
+}
+
+.header-container-admin {
+    &__menu {
+        & .header-mobile-admin-menu {
+            display: none;
+        }
+
+        & .header-logout {
+            position: absolute;
+            top: 0px;
+            right: 00px;
+
+            & .header-logout-form {
+                display: block;
+                height: 40px;
+
+                & .header-logout-form-input {
+                    height: 100%;
+                    display: block;
+                    border: solid 1px black;
+                    border-radius: 0.7rem;
+                    background-color: $cBtn;
+                    padding: 5px 20px;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        border-color: $cBtnBorder;
+                        background-color: #b9c2fd;
+                    }
+                }
+            }
+        }
+
+        & .header-menu-admin {
+            position: static;
+            background-color: transparent;
+            width: auto;
+            border: none;
+            transform: translateY(0) translateX(-110px);
+            opacity: 1;
+
+            & .header-menu-admin-list {
+                height: 40px;
+                display: flex;
+
+                & .header-menu-admin-item {
+                    display: block;
+                    border: solid 1px black;
+                    border-radius: 0.7rem;
+                    background-color: $cBtn;
+                    margin-right: 20px;
+                    padding: 5px 20px;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        border-color: $cBtnBorder;
+                        background-color: #b9c2fd;
+                    }
+
+                    &:nth-child(1) {
+                        margin-top: auto;
+                        margin-bottom: auto;
+                    }
+                    &:nth-child(2) {
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        // margin-right: 10px;
+                    }
+                    
+                    & > a {
+                        display: block;
+                        margin: auto;
+                        font-size: 18px;
+
+                        &:hover {
+                            text-shadow: none;
+                        }
+                    }
+                }
+
+                & .mobile-logout-btn.header-menu-admin-item {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.main-chg-container {
+    & .chg-form {
+        & .chg-form1{
+            display: flex;
+
+            & .text-form-group1{
+                margin-right: 10px;
+            }
+
+            & .text-form-group2{
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.main-login-container {
+    .form-container {
+
+        &__text {
+            & .form-label {
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            &:first-child {
+                margin-bottom: 30px;
+            }
+        }
+
+        &__checkbox {
+            margin-top: 30px;
+        }
+
+        &__btn {
+            margin-top: 40px;
+        }
+    }
+}
+
+.employee-list-container {
+
+    & .list-container-footer {
+        & .sort-form {
+            & .text-form-group { 
+                height: 192px;
+                flex-wrap: wrap;
+                & .form-text {
+                    & .form-text-input {
+                        margin-right: 35%;
+                    }
+
+                    @for $i from 1 through 4 {
+                        &:nth-child(#{$i}) {
+                            & .form-text-input {
+                                margin-right: 10%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.attendance-main-container {
+    flex-direction: row;
+
+    & .main-attendance-container-left {
+        width: 50%;
+    }
+
+    & .main-attendance-container-right {
+        width: 50%;
+    }
+}

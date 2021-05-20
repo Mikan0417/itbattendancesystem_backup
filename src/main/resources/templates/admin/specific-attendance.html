@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勤怠画面</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kameron&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/venders/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+    <!-- 管理者用ヘッダーの読み込み箇所の指定 -->
+    <header id="admin-header">
+    </header>
+    <!-- メインコンテンツ -->
+    <main>
+      <div class="attendance-main-container">
+        <!-- メインコンテンツ(左側部分) -->
+        <div class="main-attendance-container-left">
+            <div class="table_title">
+            </div>
+            <form>
+              <table class="table" >
+                <thead>
+                  <tr>
+                    <th>日付</th>
+                    <th>曜日</th>
+                    <th>勤務形態</th>
+                    <th>始業時刻</th>
+                    <th>就業時刻</th>
+                    <th>休憩入り</th>
+                    <th>休憩戻り</th>
+                    <th>勤務時間</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody class="attendance-table-body">
+                </tbody>
+              </table>
+              <div class="attendance-form-submit-container">
+                <input class="attendance-form-submit-btn" type="submit" value="勤怠変更">
+              </div>
+            </form>
+            <div class="export">
+              <a href="#">データのエクスポート</a>
+              
+            </div>
+            <div class="view_work">
+              <div class="p">所定勤務日数　</div>
+              <div class="p">総勤務時間　</div><br>
+              <div class="p">実勤務日数　</div>
+              <div class="p">有休消化日数　</div>
+            </div>
+        </div>
+
+        <!-- メインコンテンツ(右側部分) -->
+        <div class="main-attendance-container-right">
+            <!-- カレンダーコンテナ -->
+            <div class="calendar-container">
+                <!-- 月選択コンテナ -->
+                <div class="calendar-container__month">
+                    <table class="month-table">
+                        <thead class="month-table-head">
+                            <tr class="month-table-head-row">
+                                <th colspan="4">Month</th>
+                            </tr>
+                        </thead>
+                        <tbody class="month-table-body">
+                            <tr class="month-table-body-row">
+                                <td class="month-table-body-row-data">1</td>
+                                <td class="month-table-body-row-data">2</td>
+                                <td class="month-table-body-row-data">3</td>
+                                <td class="month-table-body-row-data">4</td>
+                            </tr>
+                            <tr class="month-table-body-row">
+                                <td class="month-table-body-row-data">5</td>
+                                <td class="month-table-body-row-data">6</td>
+                                <td class="month-table-body-row-data">7</td>
+                                <td class="month-table-body-row-data">8</td>
+                            </tr>
+                            <tr class="month-table-body-row">
+                                <td class="month-table-body-row-data">9</td>
+                                <td class="month-table-body-row-data">10</td>
+                                <td class="month-table-body-row-data">11</td>
+                                <td class="month-table-body-row-data">12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 年選択コンテナ -->
+                <div class="calendar-container__year">
+                </div>
+            </div>
+            <!-- 勤怠ボタンコンテナ -->
+            <div class="attendance-btn-container">
+                <!-- 出勤ボタンコンテナ -->
+                <div class="attendance-btn-container__commuting">
+                    <form class="attendance-form commuting-form" action="">
+                        <input class="attendance-btn commuting-btn" type="submit" value="ユーザー情報変更">
+                    </form>
+                </div>
+                <!-- 退勤ボタンコンテナ -->
+                <div class="attendance-btn-container__leave">
+                    <form class="attendance-form leave-form" action="">
+                        <input class="attendance-btn leave-btn" type="submit" value="ユーザー情報削除">
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </main>
+    <script src="../../static/js/libs/hiddenLogout.js"></script>
+    <script src="../../static/js/libs/makeAttendanceRow.js"></script>
+    <script src="../../static/js/libs/getMonthAndYear.js"></script>
+    <script src="../../static/js/libs/currentTime.js"></script>
+    <script src="../../static/js/libs/scrollYears.js"></script>
+    <script src="../../static/js/libs/clickMonth.js"></script>
+    <script src="../../static/js/libs/loadHtml.js"></script>
+    <script src="../../static/js/libs/toggleClassIOnClick.js"></script>
+    <script src="../../static/js/main.js"></script>
+</body>
+</html>

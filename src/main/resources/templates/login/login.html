@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン画面</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kameron&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/venders/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+    <header id="user-header"></header>
+    <main>
+        <div class="main-login-container">
+            <div class="form-container">
+                <div class="form-container__text">
+                    <label for="" class="form-label">User ID</label>
+                    <div>
+                        <input class="input-text" type="text" placeholder="19970210"  autofocus="true" >
+                    </div>
+                </div>
+                <div class="form-container__text">
+                    <label for="" class="form-label">Password</label>
+                    <div>
+                        <input class="input-text" type="password">
+                    </div>
+                </div>
+                <div class="form-container__checkbox">
+                    <input type="checkbox" name="riyu" value="1">
+                    <i class="checkbox-text">IDを保存する</i>
+                </div>
+                <div class="form-container__btn">
+                    <button type="submit" class="button">Log In</button>
+                </div>
+                <div class="form-container__anchor-link">
+                    <a href= "">パスワードをお忘れの方はこちら</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../static/js/libs/hiddenLogout.js"></script>
+    <script src="../../static/js/libs/makeAttendanceRow.js"></script>
+    <script src="../../static/js/libs/getMonthAndYear.js"></script>
+    <script src="../../static/js/libs/currentTime.js"></script>
+    <script src="../../static/js/libs/scrollYears.js"></script>
+    <script src="../../static/js/libs/clickMonth.js"></script>
+    <script src="../../static/js/libs/loadHtml.js"></script>
+    <script src="../../static/js/libs/toggleClassIOnClick.js"></script>
+    <script src="../../static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+■attendance_yyyymmテーブル
+
+CREATE TABLE attendance_202004 (
+  `attendance_id` MEDIUMINT(5) ZEROFILL NOT NULL,
+  `user_id` SMALLINT(4) ZEROFILL NOT NULL,
+  `user_name` VARCHAR(80) NOT NULL,
+  `date` DATE NOT NULL,
+  `work_style` VARCHAR(50) NULL,
+  `start_time` TIME NULL,
+  `end_time` TIME NULL,
+  `break_start` TIME NULL,
+  `break_end` TIME NULL,
+  `break_time` TIME NULL,
+  `scheduled_hours` TIME NULL,
+  `overtime_hours` TIME NULL,
+  `midnight_hours` TIME NULL,
+  `remarks` VARCHAR(256) NULL,
+  `total_break_time` TIME NULL,
+  `total_scheduled_hours` TIME NULL,
+  `total_overtime_hours` TIME NULL,
+  `total_midnight_hours` TIME NULL,
+  `scheduled_working_days` TINYINT NOT NULL,
+  `actual_working_days` TINYINT NOT NULL,
+  `total_hours` TIME NULL,
+  `used_paid_vacation_days` TINYINT NOT NULL,
+  `remaining_paid_vacation_days` TINYINT NOT NULL,
+  PRIMARY KEY (`attendance_id`),
+  INDEX `work_style_idx` (`work_style` ASC) VISIBLE,
+  CONSTRAINT `work_style`
+    FOREIGN KEY (`work_style`)
+    REFERENCES itb_attendance_management.work_style (`work_style`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO attendance_202105
+ (`attendance_id`, `user_id`, `user_name`, `date`, `work_style`, `start_time`, `end_time`, `break_start`, `break_end`,
+ `break_time`, `scheduled_hours`, `overtime_hours`, `midnight_hours`, `remarks`, `total_break_time`, `total_scheduled_hours`,
+ `total_overtime_hours`, `total_midnight_hours`, `scheduled_working_days`, `actual_working_days`, `total_hours`,
+ `used_paid_vacation_days`, `remaining_paid_vacation_days`) VALUES ('00005', '0065', '佐藤四郎', '2021/5/1', '通常',
+ '9:00', '18:00', '12:00', '13:00', '1:00', '8:00', '0:00', '0:00', '在宅勤務', '1:00', '8:00', '0:00', '0:00', '21', '1', '8:00', '0', '10');
+
+
+
+■work_styleテーブル
+
+CREATE TABLE work_style (
+  `work_style` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`work_style`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+insert into work_style values ("通常");
+insert into work_style values ("休日");
+insert into work_style values ("有給(1日)");
+insert into work_style values ("午後休");
+insert into work_style values ("午前休");
+insert into work_style values ("特別休暇");
+
+
+
+■admin_log_yyyyテーブル
+
+CREATE TABLE admin_log_2021 (
+  `log_id` INT(8) ZEROFILL NOT NULL AUTO_INCREMENT,
+  `operation_type` VARCHAR(50) NOT NULL,
+  `operator_name` VARCHAR(80) NOT NULL,
+  `update_time` TIMESTAMP NOT NULL,
+  `operation_target` VARCHAR(80) NOT NULL,
+  PRIMARY KEY (`log_id`),
+  INDEX `operation_type_idx` (`operation_type` ASC) VISIBLE,
+  CONSTRAINT `operation_type`
+    FOREIGN KEY (`operation_type`)
+    REFERENCES itb_attendance_management.operation_type (`operation_type`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO `attendance_minami`.`admin_log_yyyy` (`log_id`, `operation_type`, `operator_name`, `update_time`, `operation_target`) VALUES ('00000001', 'ユーザー追加', '佐藤一郎', '2021/5/2 10:06', '田中一郎');
+INSERT INTO `attendance_minami`.`admin_log_yyyy` (`log_id`, `operation_type`, `operator_name`, `update_time`, `operation_target`) VALUES ('00000002', 'ユーザー更新', '佐藤一郎', '2021/5/3 11:20', '田中二郎');
+
+
+
+■operation_typeテーブル
+
+CREATE TABLE operation_type (
+  `operation_type` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`operation_type`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+insert into operation_type values ("ユーザー追加");
+insert into operation_type values ("ユーザー更新");
+insert into operation_type values ("ユーザー削除");
+insert into operation_type values ("勤怠変更");
+
+▼	role_type
+CREATE TABLE `itb_attendance_management`.`role_type` (
+  `role` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`role`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO `itb_attendance_management`.`role_type` (`role`) VALUES ('ADMIN');
+INSERT INTO `itb_attendance_management`.`role_type` (`role`) VALUES ('USER');
+
+
+▼	department
+CREATE TABLE `itb_attendance_management`.`department` (
+  `department` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`department`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO `itb_attendance_management`.`department` (`iddepartment`) VALUES ('経理');
+INSERT INTO `itb_attendance_management`.`department` (`iddepartment`) VALUES ('人事');
+INSERT INTO `itb_attendance_management`.`department` (`iddepartment`) VALUES ('営業');
+INSERT INTO `itb_attendance_management`.`department` (`iddepartment`) VALUES ('インフラ');
+INSERT INTO `itb_attendance_management`.`department` (`iddepartment`) VALUES ('開発');
+INSERT INTO `itb_attendance_management`.`department` (`iddepartment`) VALUES ('未決定');
+
+
+▼	user_infomation
+CREATE TABLE `itb_attendance_management`.`user_infomation` (
+  `user_id` TINYINT(4) ZEROFILL NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(80) NOT NULL,
+  `birth_date` DATE NOT NULL,
+  `email` VARCHAR(256) NULL,
+  `address` VARCHAR(256) NOT NULL,
+  `password` VARCHAR(256) NOT NULL,
+  `role_type` VARCHAR(20) NOT NULL DEFAULT 'USER',
+  `department` VARCHAR(50) NOT NULL DEFAULT '未決定',
+  `hire_date` DATE NULL DEFAULT NULL,
+  `leave_date` DATE NULL DEFAULT NULL,
+  `delete_flag` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`),
+  INDEX `role_type_idx` (`role_type` ASC) VISIBLE,
+  INDEX `department_idx` (`department` ASC) VISIBLE,
+  CONSTRAINT `role_type`
+    FOREIGN KEY (`role_type`)
+    REFERENCES `itb_attendance_management`.`role_type` (`role`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `department`
+    FOREIGN KEY (`department`)
+    REFERENCES `itb_attendance_management`.`department` (`department`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO `itb_attendance_management`.`user_infomation` (`user_id`, `user_name`, `birth_date`, `email`, `address`, `password`, `role_type`, `department`, `hire_date`, `delete_flag`) VALUES ('1', 'admin', '2021-05-21', 'admin@itb.com', 'admin_address', '$2a$08$SctY04Zf5TKTjWtSC3wx8OEBQY1.oAmcY8uwy75m3gShJeW591om2', 'ADMIN', '人事', '2020-04-01', '0');
+INSERT INTO `itb_attendance_management`.`user_infomation` (`user_id`, `user_name`, `birth_date`, `email`, `address`, `password`, `role_type`, `department`, `hire_date`, `delete_flag`) VALUES ('2', 'user', '2021-05-21', 'user@itb.com', 'user_address', '$2a$08$yZmcCB.Roy.8./3g6eZFwOSOKKjfaJXjPAMAymX18W8lOHga9tbfS', 'USER', '開発', '2020-12-01', '0');

@@ -5,7 +5,7 @@
 <generatorConfiguration>
     <!-- Change the path of mysql-connector-java to suit your environment -->
     <classPathEntry
-            location="C:\Users\yk\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.23\14d64ac509adccaff444513c12646d93e4ed8be8\mysql-connector-java-8.0.23.jar"/>
+            location="C:\Users\shuto-keisuke\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.23\14d64ac509adccaff444513c12646d93e4ed8be8\mysql-connector-java-8.0.23.jar"/>
     <context id="MySQLTables" targetRuntime="MyBatis3Kotlin">
         <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
         <commentGenerator>
@@ -13,7 +13,7 @@
         </commentGenerator>
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://127.0.0.1:3307/book_manager"
+                connectionURL="jdbc:mysql://127.0.0.1:3306/itb_attendance_management"
                 userId="root"
                 password="mysql">
             <property name="nullCatalogMeansCurrent" value="true"/>
@@ -22,16 +22,16 @@
             <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
         <javaModelGenerator
-                targetPackage="com.example.springlesson.infrastructure.database.record"
+                targetPackage="com.attendance.infrastructure.database.record"
                 targetProject="src/main/kotlin">
         </javaModelGenerator>
         <javaClientGenerator
-                targetPackage="com.example.springlesson.infrastructure.database.mapper"
+                targetPackage="com.attendance.infrastructure.database.mapper"
                 targetProject="src/main/kotlin">
         </javaClientGenerator>
         <table tableName="%">
-            <columnOverride column="role_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler"
-                            javaType="com.example.springlesson.domain.enum.RoleType"/>
+<!--            <columnOverride column="role_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler"-->
+<!--                            javaType="com.example.springlesson.domain.enum.RoleType"/>-->
         </table>
     </context>
 </generatorConfiguration>

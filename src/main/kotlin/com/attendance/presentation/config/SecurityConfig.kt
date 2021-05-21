@@ -2,6 +2,7 @@ package com.attendance.presentation.config
 
 import com.attendance.application.service.AttendanceAuthenticationService
 import com.attendance.application.service.security.AttendanceUserDetailsService
+import com.attendance.domain.enum.RoleType
 import com.attendance.presentation.handler.AttendanceAccessDeniedHandler
 import com.attendance.presentation.handler.AttendanceAuthenticationEntryPoint
 import com.attendance.presentation.handler.AttendanceAuthenticationFailureHandler
@@ -17,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 class SecurityConfig(private val attendanceAuthenticationService: AttendanceAuthenticationService) : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
-            .mvcMatchers("/login").permitAll() //.permitAllを指定し、権限なしでアクセス許可
+            .mvcMatchers("/login", "/test/**").permitAll() //.permitAllを指定し、権限なしでアクセス許可
             .mvcMatchers("admin/**").hasAuthority(RoleType.ADMIN.toString()) //.hasAuthority(RoleType.ADMIN~を指定し、ADMIN権限のみアクセス許可
             .mvcMatchers("/user/**").hasAuthority(RoleType.USER.toString()) //.hasAuthority(RoleType.USER~を指定し、USER権限のみアクセス許可
             .anyRequest().authenticated()

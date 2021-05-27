@@ -5,7 +5,7 @@
 <generatorConfiguration>
     <!-- Change the path of mysql-connector-java to suit your environment -->
     <classPathEntry
-            location="C:\Users\shuto-keisuke\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.23\14d64ac509adccaff444513c12646d93e4ed8be8\mysql-connector-java-8.0.23.jar"/>
+            location="C:\Users\yk\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.23\14d64ac509adccaff444513c12646d93e4ed8be8\mysql-connector-java-8.0.23.jar"/>
     <context id="MySQLTables" targetRuntime="MyBatis3Kotlin">
         <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
         <commentGenerator>

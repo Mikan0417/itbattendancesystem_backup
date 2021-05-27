@@ -7,11 +7,11 @@
     <title>社員一覧</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kameron&family=Shippori+Mincho&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/venders/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/venders/bootstrap-reboot.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <header id="admin-header">
+    <header id="admin-header" th:insert="common/admin-header :: header-admin">
     </header>
     <main>
         <div class="employee-list-container">
@@ -43,148 +43,49 @@
                     <thead>
                         <tr>
                             <!-- スクロールしても固定でトップ表示 -->
-                            <th class="list-fixed">名前</th>
                             <th class="list-fixed">ID</th>
+                            <th class="list-fixed">名前</th>
+                            <th class="list-fixed">ふりがな</th>
+                            <th class="list-fixed">生年月日</th>
+                            <th class="list-fixed">メールアドレス</th>
+                            <th class="list-fixed">住所</th>
                             <th class="list-fixed">PassWord</th>
                             <th class="list-fixed">権限レベル</th>
-                            <th class="list-fixed">生年月日</th>
-                            <th class="list-fixed">年齢</th>
                             <th class="list-fixed">雇用形態</th>
-                            <th class="list-fixed">入社月</th>
+                            <th class="list-fixed">部署</th>
+                            <th class="list-fixed">入社日</th>
+                            <th class="list-fixed">退社日</th>
+                            <th class="list-fixed">ステータス</th>
                             <!-- スクロールしても固定でトップ表示 -->
                         </tr>
                     </thead>
                     <tbody class="list-table-row">
-                        <tr id="id01" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠一郎</a></th>
-                            <th class="list-row">00001</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/01/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
+                    <!--　thymeleafを使ってユーザー情報を表示(ここから↓)　-->
+                        <tr id="id01" onclick="rowClick(this.id)" th:each="user : ${employeelist}">
+                            <form>
+                                <th th:text="${user.userId}" class="list-row"></th>
+                                <th><input class="username-button" type="submit" th:value="${user.userName}"></th>
+                                <th th:text="${user.furiganaName}"></th>
+                                <th th:text="${user.birthDate}"></th>
+                                <th th:text="${user.email}"></th>
+                                <th th:text="${user.address}"></th>
+                                <th th:text="${user.password}"></th>
+                                <th th:text="${user.roleType}"></th>
+                                <th th:text="${user.employmentStatus}"></th>
+                                <th th:text="${user.department}"></th>
+                                <th th:text="${user.hireDate}"></th>
+                                <th th:text="${user.leaveDate}"></th>
+                                <!--  if文を使い削除フラグの値によって勤務状況の表示を変える  -->
+                                <th:block th:if="${user.deleteFlag == '0'}">  <!--  削除フラグの値が0のとき  -->
+                                    <th th:text="在職中"></th>
+                                </th:block>
+                                <th:block th:if="${user.deleteFlag == '1'}">  <!--  削除フラグの値が1のとき  -->
+                                    <th th:text="退職済"></th>
+                                </th:block>
+
+                            </form>
                         </tr>
-                        <tr id="id02" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠二郎</a></th>
-                            <th>00002</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/02/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id03" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠三郎</a></th>
-                            <th>00003</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/03/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id04" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠四郎</a></th>
-                            <th>00004</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/04/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id05" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠五郎</a></th>
-                            <th>00005</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/05/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id06" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠六郎</a></th>
-                            <th>00006</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/06/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id07" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠七郎</a></th>
-                            <th>00007</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/07/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id08" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠八郎</a></th>
-                            <th>00008</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/08/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id09" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠九郎</a></th>
-                            <th>00009</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/09/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id10" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠十郎</a></th>
-                            <th>00010</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/10/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id10" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠十郎</a></th>
-                            <th>00010</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/10/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id10" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠十郎</a></th>
-                            <th>00010</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/10/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
-                        <tr id="id10" onclick="rowClick(this.id)">
-                            <th><a href="">勤怠十郎</a></th>
-                            <th>00010</th>
-                            <th>password</th>
-                            <th>3</th>
-                            <th>1995/10/01</th>
-                            <th>25</th>
-                            <th>正社員</th>
-                            <th>2021/04</th>
-                        </tr>
+                    <!--　thymeleafを使ってユーザー情報を表示(ここまで↑)　-->
                     </tbody>
                 </table>
             </div>
@@ -231,16 +132,13 @@
             </div>
         </div>
     </main>
-    <script src="../../static/js/libs/hiddenLogout.js"></script>
-    <script src="../../static/js/libs/makeAttendanceRow.js"></script>
-    <script src="../../static/js/libs/getMonthAndYear.js"></script>
-    <script src="../../static/js/libs/currentTime.js"></script>
-    <script src="../../static/js/libs/scrollYears.js"></script>
-    <script src="../../static/js/libs/clickMonth.js"></script>
-    <script src="../../static/js/libs/loadHtml.js"></script>
-    <script src="../../static/js/libs/toggleClassIOnClick.js"></script>
-    <script src="../../static/js/main.js"></script>
-    <script src="../../static/js/libs/changeColorOnClick.js"></script>
-    <script src="../../static/js/libs/showNumberEmployees.js"></script>
+    <script th:src="@{/js/libs/hiddenLogout.js}"></script>
+    <script th:src="@{/js/libs/makeAttendanceRow.js}"></script>
+    <script th:src="@{/js/libs/getMonthAndYear.js}"></script>
+    <script th:src="@{/js/libs/currentTime.js}"></script>
+    <script th:src="@{/js/libs/scrollYears.js}"></script>
+    <script th:src="@{/js/libs/clickMonth.js}"></script>
+    <script th:src="@{/js/libs/toggleClassIOnClick.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>

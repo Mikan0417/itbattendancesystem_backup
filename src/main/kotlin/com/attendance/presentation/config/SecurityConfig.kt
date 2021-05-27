@@ -9,6 +9,7 @@ import com.attendance.presentation.handler.AttendanceAuthenticationFailureHandle
 import com.attendance.presentation.handler.AttendanceAuthenticationSuccessHandler
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
@@ -42,5 +43,11 @@ class SecurityConfig(private val attendanceAuthenticationService: AttendanceAuth
 
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(AttendanceUserDetailsService(attendanceAuthenticationService)).passwordEncoder(BCryptPasswordEncoder())
+    }
+
+    override fun configure(web: WebSecurity) {
+        web.ignoring().antMatchers(
+            "/css/**"
+        )
     }
 }

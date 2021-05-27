@@ -1,6 +1,10 @@
 package com.attendance.application.service
 
+import com.attendance.domain.model.LoginUserInfo
+import com.attendance.domain.repository.UserRepository
+import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Service
+import java.lang.IllegalStateException
 
 //ユーザーに関係する処理を実装
 //処理１：ログインフォームに入力されたemailを使ってユーザーの情報を検索する
@@ -10,5 +14,11 @@ import org.springframework.stereotype.Service
 //処理５：該当のユーザーを削除する（boolean型の削除フラグをtrueにする）
 //処理６：該当のユーザー情報を変更する
 @Service
-class UserService {
+class UserService(
+    private val userRepository: UserRepository
+) {
+    fun getAllUser(): List<com.attendance.domain.model.User>? {  //ユーザー全件取得関数
+        return userRepository.findAll()   //UserRepositoryインターフェースのfindAll関数を返す
+    }
+
 }

@@ -13,6 +13,10 @@ object UserInfomationDynamicSqlSupport {
 
         val userName = column<String>("user_name", JDBCType.VARCHAR)
 
+        val furiganaName = column<String>("furigana_name", JDBCType.VARCHAR)
+
+        val age = column<Byte>("age", JDBCType.TINYINT)
+
         val birthDate = column<LocalDate>("birth_date", JDBCType.DATE)
 
         val email = column<String>("email", JDBCType.VARCHAR)
@@ -22,6 +26,8 @@ object UserInfomationDynamicSqlSupport {
         val password = column<String>("password", JDBCType.VARCHAR)
 
         val roleType = column<String>("role_type", JDBCType.VARCHAR)
+
+        val employmentStatus = column<String>("employment_status", JDBCType.VARCHAR)
 
         val department = column<String>("department", JDBCType.VARCHAR)
 

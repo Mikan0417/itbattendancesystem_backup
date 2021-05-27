@@ -1,17 +1,16 @@
 package com.attendance.infrastructure.database.repository
 
 import com.attendance.domain.model.LoginUserInfo
+import com.attendance.domain.model.User
 import com.attendance.domain.repository.UserRepository
 import com.attendance.infrastructure.database.mapper.UserInfomationDynamicSqlSupport
 import com.attendance.infrastructure.database.mapper.UserInfomationMapper
 import com.attendance.infrastructure.database.mapper.custom.UserLoginInfoMapper
 import com.attendance.infrastructure.database.mapper.selectOne
 import com.attendance.infrastructure.database.record.UserInfomationRecord
-import com.attendance.infrastructure.database.record.custom.UserLoginInfoRecord
 import org.mybatis.dynamic.sql.SqlBuilder
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.render.RenderingStrategy
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.select
 import org.springframework.stereotype.Repository
 
 //UserRepositoryの実装クラス
@@ -41,6 +40,12 @@ class UserRepositoryImpl(
         return record?. let { toModelLoginUserInfo(it) }
     }
 
+    override fun findAll(): List<User> {   //ユーザー全件取得関数(findAll)の実装
+        val selectStatement = SqlBuilder.select(UserInfomationDynamicSqlSupport.UserInfomation.allColumns()).from(UserInfomationDynamicSqlSupport.UserInfomation).build().render(RenderingStrategy.MYBATIS3)
+        val userInfomationRecordList = userInfomationMapper.selectMany(selectStatement)
+        return userInfomationRecordList?.map { toModel(it) }
+    }
+
     private fun toModelLoginUserInfo(record: UserInfomationRecord): LoginUserInfo {
         return LoginUserInfo(
             record.userId!!,
@@ -48,6 +53,25 @@ class UserRepositoryImpl(
             record.email!!,
             record.password!!,
             record.roleType!!
+        )
+    }
+
+    private fun toModel(record: UserInfomationRecord):  User {   //ユーザー全件表示で利用するユーザー情報
+        return User(
+            record.userId!!,
+            record.userName!!,
+            record.furiganaName!!,
+            record.age!!,
+            record.birthDate!!,
+            record.email,
+            record.address!!,
+            record.password!!,
+            record.roleType!!,
+            record.employmentStatus!!,
+            record.department!!,
+            record.hireDate!!,
+            record.leaveDate,
+            record.deleteFlag!!.toString()  //thymeleafでif文を使うためにデータを文字列で保持する
         )
     }
 }

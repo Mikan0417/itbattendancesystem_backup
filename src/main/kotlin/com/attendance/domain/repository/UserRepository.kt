@@ -1,6 +1,7 @@
 package com.attendance.domain.repository
 
 import com.attendance.domain.model.LoginUserInfo
+import com.attendance.domain.model.User
 
 //ユーザーに関係するデータベース処理のインターフェース
 //処理１：emailからユーザー情報をDBで検索
@@ -11,4 +12,5 @@ import com.attendance.domain.model.LoginUserInfo
 //処理６：ユーザー情報を変更する
 interface UserRepository {
     fun findUserByEmail(email: String): LoginUserInfo?
+    fun findAll(): List<User>?  //ユーザー全件取得関数
 }
